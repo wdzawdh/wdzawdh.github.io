@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="GB2312最开始出现的当然是ASCII编码咯，GB2312 就是对 ASCII 的中文扩展。GB2312规定一个小于127的字符的意义与ASCII相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里还把数学符号、罗马希腊的字母、日文">
+<meta property="og:type" content="article">
+<meta property="og:title" content="编码">
+<meta property="og:url" content="http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/index.html">
+<meta property="og:site_name" content="洒洒水啦">
+<meta property="og:description" content="GB2312最开始出现的当然是ASCII编码咯，GB2312 就是对 ASCII 的中文扩展。GB2312规定一个小于127的字符的意义与ASCII相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里还把数学符号、罗马希腊的字母、日文">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-11-16T16:41:08.000Z">
+<meta property="article:modified_time" content="2020-11-16T17:28:44.242Z">
+<meta property="article:author" content="caowei">
+<meta name="twitter:card" content="summary">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>编码</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- cw<li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&text=编码"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&is_video=false&description=编码"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=编码&body=Check out this article: http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&name=编码&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&t=编码"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GB2312"><span class="toc-number">1.</span> <span class="toc-text">GB2312</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GB18030"><span class="toc-number">2.</span> <span class="toc-text">GB18030</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode"><span class="toc-number">3.</span> <span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-8"><span class="toc-number">4.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-16"><span class="toc-number">5.</span> <span class="toc-text">UTF-16</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        编码
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">caowei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-11-16T16:41:08.000Z" itemprop="datePublished">2020-11-17</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="GB2312"><a href="#GB2312" class="headerlink" title="GB2312"></a>GB2312</h2><p>最开始出现的当然是ASCII编码咯，GB2312 就是对 ASCII 的中文扩展。GB2312规定一个小于127的字符的意义与ASCII相同，但两个大于127的字符连在一起时，就表示一个汉字，前面的一个字节（他称之为高字节）从0xA1用到 0xF7，后面一个字节（低字节）从0xA1到0xFE，这样我们就可以组合出大约7000多个简体汉字了。在这些编码里还把数学符号、罗马希腊的字母、日文的假名们都编进去了，连在 ASCII 里本来就有的数字、标点、字母都统统重新编了两个字节长的编码，这就是常说的”全角”字符，而原来在127号以下的那些就叫”半角”字符了。</p>
+<h2 id="GB18030"><a href="#GB18030" class="headerlink" title="GB18030"></a>GB18030</h2><p>但是中国的汉字太多了，于是我们不得不继续把 GB2312 没有用到的码位找出来老实不客气地用上。后来还是不够用，于是干脆不再要求低字节一定是127号之后的内码，只要第一个字节是大于127就固定表示这是一个汉字的开始，不管后面跟的是不是扩展字符集里的内容。结果扩展之后的编码方案被称为 GBK 标准，GBK包括了GB2312 的所有内容，同时又增加了近20000个新的汉字（包括繁体字）和符号。 后来少数民族也要用电脑了，于是我们再扩展，又加了几千个新的少数民族的字，GBK扩成了GB18030。</p>
+<blockquote>
+<p>中国人也真是聪明，自己搞出一套编码标准。现在还在被广泛使用，主要是比较适合咱国人，在中文多的时候比较省流量啊。</p>
+</blockquote>
+<h2 id="Unicode"><a href="#Unicode" class="headerlink" title="Unicode"></a>Unicode</h2><p>后来ISO（国际标谁化组织）的国际组织决定废了所有的地区性编码方案，重新搞一个包括了地球上所有文化、所有字母和符号的编码！他们打算叫它”Universal Multiple-Octet Coded Character Set”，简称 UCS, 俗称 “unicode“。需要注意的是Unicode只是一个用来映射字符和数字的标准，它对支持字符的数量没有限制，也不要求字符必须占两个、三个或者其它任意数量的字节。</p>
+<p>Unicode字符集很容易找到该字符对应的二进制码，但是反过来可能会出现混乱，假设有两个字符：1100 1111 1111 0001 1111 0101 对应字符‘我’，一共三个字节，1100 1111 1111 0001对应字符‘你’，一共两个字节，恰好是‘我’这个字符二进制码的前两个字节。计算机进行解码时会从左向右依次读取，当读到1100 1111 1111 0001时它可能就停止，让‘你’这个字符与其对应，并不是我们当初想存的‘我’这个字符，这就是一个问题。Unicode字符集中对字符的编码是长度不确定的，其中有的字符是两个字符，有的是三个字符，这给计算机进行解码带来了困难，所以我们想给每个字符对应的二进制码前加上一个标记，让计算机看到这个标记就知道它将要读取几个字节，这就导致人们引入UTF-8，它将原本的Unicode码进行了transformation，就是给每个Unicode码进行标记，使得让计算机看到某个标记就知道待会要读取几个字节的代码，从而避免问题发生。</p>
+<h2 id="UTF-8"><a href="#UTF-8" class="headerlink" title="UTF-8"></a>UTF-8</h2><p>UTF-8中，0-127号的字符用1个字节来表示，使用和ASCII相同的编码。这意味着1980年代写的文档用UTF-8打开一点问题都没有。只有128号及以上的字符才用2个，3个或者4个字节来表示。因此，UTF-8也被称作可变长度编码。<br>UTF-8是这样做的：</p>
+<ol>
+<li>单字节的字符，字节的第一位设为0，对于英语文本，UTF-8码只占用一个字节，和ASCII码完全相同；</li>
+<li>n个字节的字符(n&gt;1)，第一个字节的前n位设为1，第n+1位设为0，后面字节的前两位都设为10，这n个字节的其余空位填充该字符unicode码，高位用0补足。这样就形成了如下的UTF-8标记位：</br><br>0xxxxxxx </br><br>110xxxxx 10xxxxxx </br><br>1110xxxx 10xxxxxx 10xxxxxx </br><br>11110xxx 10xxxxxx 10xxxxxx 10xxxxxx </br><br>111110xx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </br><br>1111110x 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx 10xxxxxx </br></li>
+</ol>
+<h2 id="UTF-16"><a href="#UTF-16" class="headerlink" title="UTF-16"></a>UTF-16</h2><p>曾经是当定长编码用的，大部分字符都以固定长度的字节 (2字节) 储存，处理起来容易，这也是当初会选择他们的主要原因。但是计划比不上变化快，Unicode收录的字符很快就超过了65536个。所以如果还想用定长编码似乎只能采取UTF-32这种编码方式了（目前Python使用）。可是这种方式最大的问题是即使是英文字母也要四个字节来存储，空间浪费太大了。所以UTF-8这种变长编码方式开始流行起来了，英文字母只需要一个字节，汉字三个字节。更古怪更稀有的字符可以用四个，五个或更多字节表示，因为使用频率低，所以空间浪费不大。当然定长编码的好处是可以快速定位字符，对于string.charAt(index)方法有着较好的支持。UTF-8的话，就需要从头开始一个字符一个字符的解析才行，会慢一点。但是与查询定位相比，顺序输出的情况更多，所以平常也不会感受到效率会比较慢。未来的趋势是UTF-8，文件编码是UTF-8，数据库编码是UTF-8，网络流编码是UTF-8，这样真的能减少很多麻烦，现在想要解决编码问题，统一UTF-8化是最佳解决方案。UTF-16却无法兼容于ASCII编码也是一个问题。</p>
+<blockquote>
+<p>PS. 国内网站也曾经掀起过一阵子UTF-8的热潮，小网站倒也没什么，但几个大型网站很快发现改用UTF-8之后流量费刷刷刷地往上涨，因为同样一个汉字在GB2312里只有2字节，单在UTF-8里变成了3字节，流量增加50%，对于展示大量中文内容的网站来说简直就是灾难，所以过了没多久大网站们纷纷打定主意坚守GB，包括最开始的GB2312和专门为某朱姓总理量身打造的GBK，后来一些赶潮流的又过渡到了GB18030，因为这个标准包含完整包含Unicode所有的字符集，而且对于绝大多数中文内容而言容量远小于UTF-8。</p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GB2312"><span class="toc-number">1.</span> <span class="toc-text">GB2312</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GB18030"><span class="toc-number">2.</span> <span class="toc-text">GB18030</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unicode"><span class="toc-number">3.</span> <span class="toc-text">Unicode</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-8"><span class="toc-number">4.</span> <span class="toc-text">UTF-8</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#UTF-16"><span class="toc-number">5.</span> <span class="toc-text">UTF-16</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&text=编码"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&is_video=false&description=编码"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=编码&body=Check out this article: http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&title=编码"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&name=编码&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/11/17/%E7%BC%96%E7%A0%81/&t=编码"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <!-- cw<a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a> -->
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <!-- cw<a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    caowei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
