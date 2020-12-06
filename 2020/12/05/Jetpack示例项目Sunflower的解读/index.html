@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="在2019的Google I&#x2F;O上推出了一个专门用于展示Jetpack最佳实践的demo叫Sunflower，并在持续更新。  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;k-zQVB5EhsKXIR1H3hbGYQ  我觉得这个项目在架构设计上有很多精巧之处，我也准备在下个项目中采纳这些好的设计。让我的项目在模块化、扩展性、可读性更近一步，同时也能方便单元测试。 单Activity多f">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Jetpack示例项目Sunflower的解读">
+<meta property="og:url" content="http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:site_name" content="洒洒水啦">
+<meta property="og:description" content="在2019的Google I&#x2F;O上推出了一个专门用于展示Jetpack最佳实践的demo叫Sunflower，并在持续更新。  https:&#x2F;&#x2F;mp.weixin.qq.com&#x2F;s&#x2F;k-zQVB5EhsKXIR1H3hbGYQ  我觉得这个项目在架构设计上有很多精巧之处，我也准备在下个项目中采纳这些好的设计。让我的项目在模块化、扩展性、可读性更近一步，同时也能方便单元测试。 单Activity多f">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/Jetpack示例项目Sunflower的解读/截屏2020-12-06%20下午4.28.02.png">
+<meta property="og:image" content="http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/Jetpack示例项目Sunflower的解读/截屏2020-12-06%20下午4.49.25.png">
+<meta property="article:published_time" content="2020-12-05T04:43:07.000Z">
+<meta property="article:modified_time" content="2020-12-06T09:44:34.478Z">
+<meta property="article:author" content="caowei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/Jetpack示例项目Sunflower的解读/截屏2020-12-06%20下午4.28.02.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>Jetpack示例项目Sunflower的解读</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/11/29/%E7%90%86%E8%A7%A3%E6%8A%BD%E8%B1%A1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- cw<li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&text=Jetpack示例项目Sunflower的解读"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&is_video=false&description=Jetpack示例项目Sunflower的解读"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Jetpack示例项目Sunflower的解读&body=Check out this article: http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&name=Jetpack示例项目Sunflower的解读&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&t=Jetpack示例项目Sunflower的解读"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95Activity%E5%A4%9Afragment"><span class="toc-number">1.</span> <span class="toc-text">单Activity多fragment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E7%9A%84%E8%81%8C%E8%B4%A3%E5%88%86%E5%B7%A5"><span class="toc-number">2.</span> <span class="toc-text">页面内的职责分工</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%88%91%E8%AE%A4%E4%B8%BA%E6%9C%AA%E6%9D%A5%E4%BC%9A%E6%B7%BB%E5%8A%A0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">其他我认为未来会添加的功能</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        Jetpack示例项目Sunflower的解读
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">caowei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-05T04:43:07.000Z" itemprop="datePublished">2020-12-05</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>在2019的Google I/O上推出了一个专门用于展示Jetpack最佳实践的demo叫Sunflower，并在持续更新。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/k-zQVB5EhsKXIR1H3hbGYQ">https://mp.weixin.qq.com/s/k-zQVB5EhsKXIR1H3hbGYQ</a></p>
+</blockquote>
+<p>我觉得这个项目在架构设计上有很多精巧之处，我也准备在下个项目中采纳这些好的设计。让我的项目在模块化、扩展性、可读性更近一步，同时也能方便单元测试。</p>
+<h3 id="单Activity多fragment"><a href="#单Activity多fragment" class="headerlink" title="单Activity多fragment"></a>单Activity多fragment</h3><p>很早就用fragment来代替页面的想法，但是fragment比activity要复杂和灵活的多，从而使用中总会出现一些奇怪的问题。现在有了Navigation，这种用fragment代替页面的方案有了官方的支持，我想就可以放心的将这种模式引用的项目中来。这样我们就有了一种轻量级的页面，可以更方便的搭建页面、隔离和共享ViewModel数据，并且还有一个可视化的界面(NavigationEditor)来查看页面间的关系，也不用自己处理过渡动画和返回栈。我觉得最好一个模块用一activity，这样职责可以划分的很清楚，activity负责与外界交互，fragment专心负责页面展示。</p>
+<img src="Jetpack示例项目Sunflower的解读/截屏2020-12-06 下午4.28.02.png" alt="截屏2020-12-06 下午4.28.02" style="zoom:50%;" />
+
+<h3 id="页面内的职责分工"><a href="#页面内的职责分工" class="headerlink" title="页面内的职责分工"></a>页面内的职责分工</h3><p>我觉得它把每个界面的逻辑主要分成了三块</p>
+<p>1.Fragment负责界面的展示和用户的交互逻辑。</p>
+<p>2.Repository负责从接口或者数据库获取数据，但不做处理。</p>
+<p>3.ViewModel负责处理这些源数据，将有用的信息存储下来并处理成界面需要的数据结构提供给fragment用于展示。</p>
+<p>这样就形成了，用户操作-&gt;获取数据-&gt;处理数据-&gt;展示数据的闭环。而且Repository和ViewModel可以给多个界面共用。这解决了MVP的P层无法共用的问题和与V层交互接口过多的问题。ViewModel的页面重建保存数据的特性也会减少很多数据恢复的烦恼。</p>
+<img src="Jetpack示例项目Sunflower的解读/截屏2020-12-06 下午4.49.25.png" alt="截屏2020-12-06 下午4.49.25" style="zoom:50%;" />
+
+<p>这其实就是大家常说的MVVM，但我觉得我们完全可以根据自己的需要进行个性化的修改，让架构更适合我们的业务，而不是一板一眼的全盘照抄。比如可以给单独模块增加存储数据的ViewModel，或者可以将核心业务算法和条件判断提取到一个全局的逻辑模块。我们大可忘记MVVM的固有形态，而是灵活运用Jetpack的各个组件，拼出你最合适的架构。</p>
+<h3 id="单元测试"><a href="#单元测试" class="headerlink" title="单元测试"></a>单元测试</h3><p>Sunflower中有很多单元测试的案例可以参考，我相信他们也会持续完善。目前测试代码主要以测试核心功能为主，比如后台任务、数据库操作、ViewModel的数据处理。我觉得实际项目可以加上对后台接口数据的获取、模拟、解析的单元测试，防止因为数据问题导致的bug。UI界面的单元测试我认为收益太低，而且编写麻烦，在频繁变动需求的情况下难以维护，可以把优先级放低。</p>
+<h3 id="其他我认为未来会添加的功能"><a href="#其他我认为未来会添加的功能" class="headerlink" title="其他我认为未来会添加的功能"></a>其他我认为未来会添加的功能</h3><p>1.Jetpack DataStore的案例，这是用来代替<code>SharedPreferences</code>的框架。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VYLOAYcnfUqPcfMjQPp3ow">https://mp.weixin.qq.com/s/VYLOAYcnfUqPcfMjQPp3ow</a></p>
+</blockquote>
+<p>2.Activity Results API，这是用来代替<code>onActivityResult</code>的新API。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/VJhSPFkH5v9QoXtAp8kN4Q">https://mp.weixin.qq.com/s/VJhSPFkH5v9QoXtAp8kN4Q</a></p>
+</blockquote>
+<p>3.Fragment Result APIs，这是一种新的Fragment间传递数据的方式。</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/sxhU9kQULQK9cU8g-t30dw">https://mp.weixin.qq.com/s/sxhU9kQULQK9cU8g-t30dw</a></p>
+</blockquote>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95Activity%E5%A4%9Afragment"><span class="toc-number">1.</span> <span class="toc-text">单Activity多fragment</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E5%86%85%E7%9A%84%E8%81%8C%E8%B4%A3%E5%88%86%E5%B7%A5"><span class="toc-number">2.</span> <span class="toc-text">页面内的职责分工</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E6%B5%8B%E8%AF%95"><span class="toc-number">3.</span> <span class="toc-text">单元测试</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B6%E4%BB%96%E6%88%91%E8%AE%A4%E4%B8%BA%E6%9C%AA%E6%9D%A5%E4%BC%9A%E6%B7%BB%E5%8A%A0%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">4.</span> <span class="toc-text">其他我认为未来会添加的功能</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&text=Jetpack示例项目Sunflower的解读"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&is_video=false&description=Jetpack示例项目Sunflower的解读"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=Jetpack示例项目Sunflower的解读&body=Check out this article: http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&title=Jetpack示例项目Sunflower的解读"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&name=Jetpack示例项目Sunflower的解读&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/&t=Jetpack示例项目Sunflower的解读"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <!-- cw<a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a> -->
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <!-- cw<a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    caowei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
