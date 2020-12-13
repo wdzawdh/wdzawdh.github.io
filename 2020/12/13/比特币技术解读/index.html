@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang=en>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="区块链的本质它是一种特殊的分布式数据库，可以通俗的理解为账本。任何人只要你有服务器，就能加入这个网络，成为一个节点。每个节点都包含了整个区块链，并且节点之间时刻不停地在同步信息。也可以随时离开和重新加入网络(每个人都能当矿工，矿工就是记账的，全球用同一个账本)。 当你发生了一笔支付，你所在的节点就会把这笔交易告诉另一个节点，直至传遍整个网络。矿工从网上收集各种新发生的交易，将它们打包写入区块链。一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="比特币技术解读">
+<meta property="og:url" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/index.html">
+<meta property="og:site_name" content="洒洒水啦">
+<meta property="og:description" content="区块链的本质它是一种特殊的分布式数据库，可以通俗的理解为账本。任何人只要你有服务器，就能加入这个网络，成为一个节点。每个节点都包含了整个区块链，并且节点之间时刻不停地在同步信息。也可以随时离开和重新加入网络(每个人都能当矿工，矿工就是记账的，全球用同一个账本)。 当你发生了一笔支付，你所在的节点就会把这笔交易告诉另一个节点，直至传遍整个网络。矿工从网上收集各种新发生的交易，将它们打包写入区块链。一">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午2.21.11.png">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午2.40.32.png">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午11.35.07.png">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午4.05.43.png">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午4.16.01.png">
+<meta property="og:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午4.23.06.png">
+<meta property="article:published_time" content="2020-12-13T05:55:21.000Z">
+<meta property="article:modified_time" content="2020-12-13T15:41:35.430Z">
+<meta property="article:author" content="caowei">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/截屏2020-12-13%20下午2.21.11.png">
+    
+    
+      
+        
+          <link rel="shortcut icon" href="/images/favicon.ico">
+        
+      
+      
+        
+          <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+        
+      
+      
+        
+          <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+        
+      
+    
+    <!-- title -->
+    <title>比特币技术解读</title>
+    <!-- styles -->
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <!-- persian styles -->
+    
+      
+<link rel="stylesheet" href="/css/rtl.css">
+
+    
+    <!-- rss -->
+    
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        
+        <li><a class="icon" href="/2020/12/05/Jetpack%E7%A4%BA%E4%BE%8B%E9%A1%B9%E7%9B%AESunflower%E7%9A%84%E8%A7%A3%E8%AF%BB/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <!-- cw<li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li> -->
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&text=比特币技术解读"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&is_video=false&description=比特币技术解读"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=比特币技术解读&body=Check out this article: http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&name=比特币技术解读&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&t=比特币技术解读"><i class="fab fa-hacker-news " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.</span> <span class="toc-text">区块链的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">区块链的最大特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">区块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E4%BF%AE%E6%94%B9%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">不可修改性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF"><span class="toc-number">5.</span> <span class="toc-text">挖矿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">挖矿的算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%BE%E5%BA%A6%E7%B3%BB%E6%95%B0%E7%9A%84%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82"><span class="toc-number">7.</span> <span class="toc-text">难度系数的动态调节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%88%86%E5%8F%89"><span class="toc-number">8.</span> <span class="toc-text">区块链的分叉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93"><span class="toc-number">9.</span> <span class="toc-text">交易</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E7%A1%AE%E8%AE%A4"><span class="toc-number">10.</span> <span class="toc-text">交易确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95"><span class="toc-number">11.</span> <span class="toc-text">交易记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%BF%E5%B7%A5%E7%9A%84%E6%94%B6%E7%9B%8A"><span class="toc-number">12.</span> <span class="toc-text">矿工的收益</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%8F%8C%E8%8A%B1%E2%80%9D%E9%97%AE%E9%A2%98"><span class="toc-number">13.</span> <span class="toc-text">“双花”问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E8%8A%B1%E6%94%BB%E5%87%BB-%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%8A%82%E7%82%B9%E5%8F%8C%E8%8A%B1%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">14.</span> <span class="toc-text">双花攻击(在不同节点双花的问题)</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index py4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        比特币技术解读
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">caowei</span>
+      </span>
+      
+    <div class="postdate">
+      
+        <time datetime="2020-12-13T05:55:21.000Z" itemprop="datePublished">2020-12-13</time>
+        
+      
+    </div>
+
+
+      
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="区块链的本质"><a href="#区块链的本质" class="headerlink" title="区块链的本质"></a>区块链的本质</h3><p>它是一种特殊的分布式数据库，可以通俗的理解为账本。任何人只要你有服务器，就能加入这个网络，成为一个节点。每个节点都包含了整个区块链，并且节点之间时刻不停地在同步信息。也可以随时离开和重新加入网络(每个人都能当矿工，矿工就是记账的，全球用同一个账本)。</p>
+<p>当你发生了一笔支付，你所在的节点就会把这笔交易告诉另一个节点，直至传遍整个网络。矿工从网上收集各种新发生的交易，将它们打包写入区块链。一旦写入成功，矿工所在节点的区块链，就成为最新版本，其他节点都会来复制新增的区块，保证全网的区块链都是一致的。</p>
+<h3 id="区块链的最大特点"><a href="#区块链的最大特点" class="headerlink" title="区块链的最大特点"></a>区块链的最大特点</h3><p>分布式数据库并非新发明，但区块链有一个革命性特点。它是彻底无中心的。其他的数据库都有管理员，但是区块链没有(没人能管)。</p>
+<p>当前互联网上的金融贸易基于信用的模式，维护信用成本是很大。比特币网络其实是替代的中心化的信用机构，并不能保证交易双方的信用。就像上面说的买家拒不付款、卖家拒不发货此类情况，都是属于交易双方出现了信用问题，而由于此时没有第三方信用系统介入(淘宝、京东等)，交易无法撤销，损失了就是损失了，这是比特币的优点也是它的痛点(1.成本低2.交易不可修改)。</p>
+<h3 id="区块"><a href="#区块" class="headerlink" title="区块"></a>区块</h3><p>可以把每一笔交易理解为一张汇款单，把系统上每个区块比如成一本账簿。那么账簿上就会贴满所有每一笔交易的汇款单。</p>
+<p>区块头(Head):记录当前区块的特征值(包含生成时间，区块体的哈希，上一个区块的哈希)</p>
+<p>区块体(Body):当前区块的所有交易信息(使用默克尔树，保证不可修改性，节省存储空间)。</p>
+<img src="./截屏2020-12-13 下午2.21.11.png" alt="截屏2020-12-13 下午2.21.11" style="zoom:50%;" />
+
+<h3 id="不可修改性"><a href="#不可修改性" class="headerlink" title="不可修改性"></a>不可修改性</h3><p>其中有当前区块体的哈希，还有上一个区块的哈希。这意味着，如果当前区块体的内容变了，或者上一个区块的哈希变了，一定会引起当前区块的哈希改变。</p>
+<p>这一点对区块链有重大意义。如果有人修改了一个区块，该区块的哈希就变了。为了让后面的区块还能连到它(因为下一个区块包含上一个区块的哈希)，该人必须依次修改后面所有的区块，否则被改掉的区块就脱离区块链了。挖出一个区块的计算很耗时，短时间内修改多个区块几乎不可能发生。除非有人掌握了全网51%以上的计算能力(每个区块都是由上个区块的信息计算出来的，要修改区块条件非常苛刻)。</p>
+<p>正是通过这种联动机制，区块链保证了自身的可靠性，数据一旦写入，就无法被篡改。这就像历史一样，发生了就是发生了，从此再无法改变。每个区块都连着上一个区块，这也是”区块链”这个名字的由来。</p>
+<h3 id="挖矿"><a href="#挖矿" class="headerlink" title="挖矿"></a>挖矿</h3><p>挖矿一来浪费电力，二来浪费算力，为什么还需要这种机制呢?</p>
+<p>试想，有一笔交易产生了，并广播给全网，现在A、B、C三个人都收到了这个交易信息，都可以对交易进行加盖时间戳，然后打包区块到链上去。但是每个人接受到的交易信息不一样，并且接受的时间也不一样，那么产生的区块hash就千差万别。所以此时需要一个共识机制，在全网达成共识，就需要引入竞争机制。</p>
+<h3 id="挖矿的算法"><a href="#挖矿的算法" class="headerlink" title="挖矿的算法"></a>挖矿的算法</h3><p>可以简单地总结为对区块头信息做两次sha256哈希运算，得到的结果如果小于区块头中规定的难度目标，即挖矿成功。</p>
+<img src="./截屏2020-12-13 下午2.40.32.png" alt="截屏2020-12-13 下午2.40.32" style="zoom:50%;" />
+
+<p>Nonce是一个随机值，矿工的作用其实就是猜出Nonce的值，使得区块头的哈希可以小于目标值，从而能够写入区块链。Nonce是非常难猜的，目前只能通过穷举法一个个试错。根据协议，Nonce是一个32位的二进制值，即最大可以到21.47亿。第100000个区块的Nonce值是274148111，可以理解成，矿工从0开始，一直计算了2.74亿次，才得到了一个有效的Nonce值，使得算出的哈希能够满足条件。</p>
+<p>运气好的话，也许一会就找到了Nonce。运气不好的话，可能算完了21.47亿次，都没有发现Nonce，即当前区块体不可能算出满足条件的哈希。这时，协议允许矿工改变区块体，开始新的计算。</p>
+<h3 id="难度系数的动态调节"><a href="#难度系数的动态调节" class="headerlink" title="难度系数的动态调节"></a>难度系数的动态调节</h3><p>采矿具有随机性，没法保证正好十分钟产出一个区块，有时一分钟就算出来了，有时几个小时可能也没结果。总体来看，随着硬件设备的提升，以及矿机的数量增长，计算速度一定会越来越快。</p>
+<p>为了将产出速率恒定在十分钟，难度系数每两周调整一次。如果这两周里面，区块的平均生成速度是9分钟，就意味着比法定速度快了10%，因此接下来的难度系数就要调高10%;如果平均生成速度是11分钟，就意味着比法定速度慢了10%，因此接下来的难度系数就要调低10%。难度系数越调越高(目标值越来越小)，导致了采矿越来越难。</p>
+<h3 id="区块链的分叉"><a href="#区块链的分叉" class="headerlink" title="区块链的分叉"></a>区块链的分叉</h3><p>假设矿工节点M1和M2几乎在同一时间挖出了区块，并且很不幸M1挖到区块时只收到了交易T1，而M2挖到的区块时只收到了交易T2，这样交易T1和T2被分别打包进两个区块。因为这两个区块是差不多同一时间被挖出，于是造成了区块链的分叉：</p>
+<img src="./截屏2020-12-13 下午11.35.07.png" alt="截屏2020-12-13 下午11.35.07" style="zoom:50%;" />
+
+<p>现在的规则是，新节点总是采用最长的那条区块链。如果区块链有分叉，将看哪个分支在分叉点后面，先达到6个新区块(称为”六次确认”)。按照10分钟一个区块计算，一小时就可以确认。</p>
+<img src="./截屏2020-12-13 下午4.05.43.png" alt="截屏2020-12-13 下午4.05.43" style="zoom:50%;" />
+
+<h3 id="交易"><a href="#交易" class="headerlink" title="交易"></a>交易</h3><p>发送者(张三)要做的事情是:把这条交易信息和目标地址(李四的公钥)做个hash，然后用自己的私钥进行数字签名(即用张三的私钥加密这个哈希值)，同时将这个数字签名附到这笔Tx(交易)里，然后发送给李四。</p>
+<p>李四收到这条消息后怎么做:拿着这笔交易里公布的张三的公钥来验证数据(公钥解密)得到哈希值x，同时，用自己的公钥和交易信息做哈希得到hash(data)，然后对比x=hash(data)，则可以判断出这笔交易来自于张三。因为公钥验证出的哈希值只有私钥才能生成，而拿张三的公钥验证成功，必然是张三发出的交易，并且信息没有被篡改。</p>
+<img src="./截屏2020-12-13 下午4.16.01.png" alt="截屏2020-12-13 下午4.16.01" style="zoom: 33%;" />
+
+<h3 id="交易确认"><a href="#交易确认" class="headerlink" title="交易确认"></a>交易确认</h3><p>确认交易的真实性以后，交易还不算完成。交易数据必须写入数据库，才算成立，对方才能真正收到钱。</p>
+<p>所有的交易数据都会传送到矿工那里。矿工负责把这些交易写入区块链。根据比特币协议，一个区块的大小最大是1MB，而一笔交易大概是500字节左右，因此一个区块最多可以包含2000多笔交易。矿工负责把这2000多笔交易打包在一起，组成一个区块，写入区块链。</p>
+<h3 id="交易记录"><a href="#交易记录" class="headerlink" title="交易记录"></a>交易记录</h3><p>一笔交易一旦写入了区块链，就无法反悔了。这里需要建立一个观念:比特币不存放在钱包或其他别的地方，而是只存在于区块链上面。区块链记载了你参与的每一笔交易，你得到过多少比特币，你又支付了多少比特币，因此可以算出来你拥有多少资产。</p>
+<p>交易记录构成了一组链式结构，所有合法的比特币交易都可以追溯到前向一个或多个交易的输出，这些链条的源头都是挖矿奖励，末尾则是当前未花费的交易输出。</p>
+<p>第一，除了coinbase交易之外，所有的资金来源都必须来自前面某一个或者几个交易的UTXO。</p>
+<p>第二，任何一笔交易的交易输入总量必须等于交易输出总量，等式两边必须配平。</p>
+<img src="./截屏2020-12-13 下午4.23.06.png" alt="截屏2020-12-13 下午4.23.06" style="zoom: 33%;" />
+
+<h3 id="矿工的收益"><a href="#矿工的收益" class="headerlink" title="矿工的收益"></a>矿工的收益</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">挖矿奖励&#x3D;新建区块的奖励+打包费奖励</span><br></pre></td></tr></table></figure>
+
+<p>比特币协议规定，挖到新区块的矿工将获得奖励，一开始(2008年)是50个比特币，然后每4年减半，目前是12.5个比特币。这也是比特币的供给增加机制，流通中新增的比特币都是这样诞生的。</p>
+<p>你可能看出来了，每4年奖励减半，由于比特币可以分割到小数点后八位，那么到了2140年，矿工将得不到任何奖励，比特币的数量也将停止增加。这时，矿工的收益就完全依靠交易手续费了。</p>
+<p>所谓交易手续费，就是矿工可以从每笔交易抽成，具体的金额由支付方自愿决定。你完全可以一毛不拔，一分钱也不给矿工，但是那样的话，你的交易就会没人处理，迟迟无法写入区块链，得到确认。矿工们总是优先处理手续费最高的交易。</p>
+<h3 id="“双花”问题"><a href="#“双花”问题" class="headerlink" title="“双花”问题"></a>“双花”问题</h3><p>加密数字货币和其他数字资产一样，具有无限可复制性，如果没有一个中心化的媒介机构，人们没有办法确认一笔数字现金是否已经被花掉。比特币使用UTXO和时间戳防止双重支付。</p>
+<p>在比特币中规定每一笔新的交易输入必须是某笔还未花费输出，同时每一笔输入都需要上一笔输出对应的私钥进行签名，也就是说你想产生新的交易输入，系统就需要扫描整个区块链中你的UTXO，只有通过UTXO“尚未使用过”的交易签名，这笔交易才能生效;如果先发起一笔交易，在它被确认前，也就是这个时间段的交易还未被记账成区块时，进行矛盾的第二笔交易，那么在记账时，这些交易会被拒绝(矿工可以自主任意选择这两笔交易里的一笔)。这就解决了在同一节点的双花问题。</p>
+<h3 id="双花攻击-在不同节点双花的问题"><a href="#双花攻击-在不同节点双花的问题" class="headerlink" title="双花攻击(在不同节点双花的问题)"></a>双花攻击(在不同节点双花的问题)</h3><p>比如有个诈骗者刻意把第一笔交易向一半网络进行广播，把第二笔交易向另一半网络广播。然后两边正好有两个矿工几乎同时取得记账权，把各自记的block发布给大家，这时候原来统一的账本出现了分叉。</p>
+<p>但是在两个账本中各只有一笔交易，诈骗者不会有好处。接下来，下一个矿工选择在A基础上继续记账的话，A分支就会比B分支更长，根据区块链的规则，最长的分支会被认可，短的分支会被放弃(比特币6次确认)，账本还是会回归为一个，交易也只有一笔有效。</p>
+<p>这个诈骗犯智商非常高，他等到A分支被认可(B也可以)，相应交易确认，拿到商品之后，立刻自己变身矿工，争取到连续五次记账权，然后在B分支上连加2个block，于是B分支成为认可的分支，A被舍弃，A分支中的交易不再成立，但他已经拿到商品，诈骗成功。</p>
+<p>如果诈骗者掌握了全网50%以上的计算力，那么即使落后很多，他追上也只是时间问题。这就是比特币的“51%攻击”(BTG遭受过51%双花攻击)。</p>
+
+  </div>
+</article>
+
+
+
+        
+          <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E6%9C%AC%E8%B4%A8"><span class="toc-number">1.</span> <span class="toc-text">区块链的本质</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E6%9C%80%E5%A4%A7%E7%89%B9%E7%82%B9"><span class="toc-number">2.</span> <span class="toc-text">区块链的最大特点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97"><span class="toc-number">3.</span> <span class="toc-text">区块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8D%E5%8F%AF%E4%BF%AE%E6%94%B9%E6%80%A7"><span class="toc-number">4.</span> <span class="toc-text">不可修改性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF"><span class="toc-number">5.</span> <span class="toc-text">挖矿</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%8C%96%E7%9F%BF%E7%9A%84%E7%AE%97%E6%B3%95"><span class="toc-number">6.</span> <span class="toc-text">挖矿的算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%BE%E5%BA%A6%E7%B3%BB%E6%95%B0%E7%9A%84%E5%8A%A8%E6%80%81%E8%B0%83%E8%8A%82"><span class="toc-number">7.</span> <span class="toc-text">难度系数的动态调节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8C%BA%E5%9D%97%E9%93%BE%E7%9A%84%E5%88%86%E5%8F%89"><span class="toc-number">8.</span> <span class="toc-text">区块链的分叉</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93"><span class="toc-number">9.</span> <span class="toc-text">交易</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E7%A1%AE%E8%AE%A4"><span class="toc-number">10.</span> <span class="toc-text">交易确认</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BA%A4%E6%98%93%E8%AE%B0%E5%BD%95"><span class="toc-number">11.</span> <span class="toc-text">交易记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%9F%BF%E5%B7%A5%E7%9A%84%E6%94%B6%E7%9B%8A"><span class="toc-number">12.</span> <span class="toc-text">矿工的收益</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%80%9C%E5%8F%8C%E8%8A%B1%E2%80%9D%E9%97%AE%E9%A2%98"><span class="toc-number">13.</span> <span class="toc-text">“双花”问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%8C%E8%8A%B1%E6%94%BB%E5%87%BB-%E5%9C%A8%E4%B8%8D%E5%90%8C%E8%8A%82%E7%82%B9%E5%8F%8C%E8%8A%B1%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">14.</span> <span class="toc-text">双花攻击(在不同节点双花的问题)</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.facebook.com/sharer.php?u=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://twitter.com/share?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&text=比特币技术解读"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.linkedin.com/shareArticle?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://pinterest.com/pin/create/bookmarklet/?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&is_video=false&description=比特币技术解读"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=比特币技术解读&body=Check out this article: http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://getpocket.com/save?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://reddit.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.stumbleupon.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://digg.com/submit?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&title=比特币技术解读"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="http://www.tumblr.com/share/link?url=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&name=比特币技术解读&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" target="_blank" rel="noopener" href="https://news.ycombinator.com/submitlink?u=http://example.com/2020/12/13/%E6%AF%94%E7%89%B9%E5%B8%81%E6%8A%80%E6%9C%AF%E8%A7%A3%E8%AF%BB/&t=比特币技术解读"><i class="fab fa-hacker-news fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <!-- cw<a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a> -->
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <!-- cw<a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a> -->
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+        
+        <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy;
+    
+    
+    2016-2020
+    caowei
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/index/">Index</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+    </div>
+    <!-- styles -->
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+
+    <!-- jquery -->
+
+<script src="/lib/jquery/jquery.min.js"></script>
+
+
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+
+<!-- clipboard -->
+
+  
+<script src="/lib/clipboard/clipboard.min.js"></script>
+
+  <script type="text/javascript">
+  $(function() {
+    // copy-btn HTML
+    var btn = "<span class=\"btn-copy tooltipped tooltipped-sw\" aria-label=\"Copy to clipboard!\">";
+    btn += '<i class="far fa-clone"></i>';
+    btn += '</span>'; 
+    // mount it!
+    $(".highlight table").before(btn);
+    var clip = new ClipboardJS('.btn-copy', {
+      text: function(trigger) {
+        return Array.from(trigger.nextElementSibling.querySelectorAll('.code')).reduce((str,it)=>str+it.innerText+'\n','')
+      }
+    });
+    clip.on('success', function(e) {
+      e.trigger.setAttribute('aria-label', "Copied!");
+      e.clearSelection();
+    })
+  })
+  </script>
+
+
+<script src="/js/main.js"></script>
+
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Umami Analytics -->
+
+<!-- Disqus Comments -->
+
+
+</body>
+</html>
